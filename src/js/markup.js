@@ -1,8 +1,6 @@
 export { renderListMarkup, renderInfoMarkup };
 
 function renderListMarkup(info) {
-  console.log(info);
-
   const listMarkup = info
     .map(item => {
       return `
