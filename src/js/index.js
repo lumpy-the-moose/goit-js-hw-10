@@ -25,27 +25,29 @@ searchBox.addEventListener(
       return;
     }
 
-    fetchCountries(e.target.value.trim()).then(r => {
-      if (!r) {
+    fetchCountries(e.target.value.trim()).then(result => {
+      if (!result) {
         Notify.info('Oops, there is no country with that name');
+        countryList.innerHTML = '';
+        countryInfo.innerHTML = '';
         return;
       }
 
-      if (r.length === 1) {
+      if (result.length === 1) {
         countryInfo.classList.remove('hidden');
         countryList.classList.add('hidden');
-        countryInfo.innerHTML = renderInfoMarkup(r);
+        countryInfo.innerHTML = renderInfoMarkup(result);
         return;
       }
 
-      if (r.length >= 2 && r.length <= 10) {
+      if (result.length >= 2 && result.length <= 10) {
         countryList.classList.remove('hidden');
         countryInfo.classList.add('hidden');
-        countryList.innerHTML = renderListMarkup(r);
+        countryList.innerHTML = renderListMarkup(result);
         return;
       }
 
-      if (r.length > 10) {
+      if (result.length > 10) {
         Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );

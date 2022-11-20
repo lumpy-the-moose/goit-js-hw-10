@@ -3,9 +3,9 @@ export default function fetchCountries(input) {
     `https://restcountries.com/v3.1/name/${input}` +
       '?fields=name,capital,population,flags,languages'
   )
-    .then(r => {
-      if (r.status !== 404) {
-        return r.json();
+    .then(result => {
+      if (result.status !== 404) {
+        return result.json();
       }
     })
     .catch();
